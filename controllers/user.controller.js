@@ -46,8 +46,20 @@ const loginUser = asyncHandler(async (req, res) => {
       "User logged in successfully",
     ),
   );
+  
+});
+const getMe = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id).select("-password");  
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }  
+  res.json({
+    message: "Protected route accessed",
+    user: user
+  });
 });
 module.exports = {
   registerUser,
   loginUser,
+  getMe
 };
