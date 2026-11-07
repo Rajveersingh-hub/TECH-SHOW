@@ -17,7 +17,11 @@ const userSchema = new mongoose.Schema({
         required: [true, "Password is required"],
         select: false, // password ko select nahi karna hai
         
-    }
+    },
+    profileId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Profile"
+}
 });
 userSchema.set("toJSON", {
     transform: function (doc, ret) {
