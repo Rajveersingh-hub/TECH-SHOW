@@ -9,6 +9,8 @@ const skillRoutes = require("./routes/skill.routes");
 const userSkillRoutes = require("./routes/userSkill.routes");
 const evidenceRoutes = require("./routes/evidence.routes");
 const evidenceSkillRoutes = require("./routes/evidenceSkill.routes");
+const achievementRoutes = require("./routes/achievement.routes");
+const educationRoutes = require("./routes/education.routes");
 require("dotenv").config({ path: path.join(__dirname, ".env") });
 
 const app = express();
@@ -23,7 +25,8 @@ const PORT = process.env.PORT || 5000;
 
 app.use("/api/v1/evidence", evidenceRoutes);
 app.use("/api/v1/evidence-skills", evidenceSkillRoutes);
-
+app.use("/api/v1/achievements", achievementRoutes);
+app.use("/api/v1/education", educationRoutes);
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("MongoDB connected");
